@@ -1,7 +1,9 @@
 #!/usr/bin/with-contenv /bin/bash
 # 酷Q Pro 语音组件
 # https://cqp.cc/t/21132
-if [[ -e /home/user/coolq/bin/cqc.exe ]]; then
+if [[ ! -d /home/user/coolq/bin ]]; then
+    echo 'bin directory does not exist; CoolQ needs to bootstrap itself first.'
+elif [[ -e /home/user/coolq/bin/cqc.exe ]]; then
     echo 'cqc.exe already exists, skipped download.'
 else
     echo 'Downloading cqc...'
