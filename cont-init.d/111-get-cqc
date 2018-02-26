@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv /bin/bash
+# 酷Q Pro 语音组件
+# https://cqp.cc/t/21132
+if [[ -e /home/user/coolq/bin/cqc.exe ]]; then
+    echo 'cqc.exe already exists, skipped download.'
+else
+    echo 'Downloading cqc...'
+    mkdir /tmp/cqc
+    wget $CQC_URL -O /tmp/cqc/cqc.zip
+    echo 'Unzipping cqc...'
+    cd /tmp/cqc
+    LC_ALL=zh_CN.UTF-8 unzip cqc.zip > /dev/null
+    chown user:user install/bin/*
+    mkdir -p /home/user/coolq/bin
+    mv install/bin/* /home/user/coolq/bin
+    rm -rf /tmp/cqc
+fi
